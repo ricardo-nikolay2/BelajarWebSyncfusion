@@ -1,0 +1,134 @@
+﻿@*@using Rumus;*@
+
+@using Entity;
+
+<h3>HitungBeratPipa</h3>
+
+
+
+
+<table cellpadding="5">
+    
+   
+        <tr>
+        <td>OD </td>
+        <td> :</td>
+        <td><SfNumericTextBox  TValue="decimal?" @bind-Value="@od"  ShowSpinButton="false" Format="##.#" /> </td>
+        
+    </tr>
+    
+    <tr>
+        <td>Thickness </td>
+        <td> :</td>
+        <td><SfNumericTextBox TValue="decimal?" @bind-Value="@thickness" ShowSpinButton="false" /> </td>
+    </tr>
+
+    <tr>
+        <td>Length </td>
+        <td> :</td>
+        <td><SfNumericTextBox TValue="decimal?" @bind-Value="@length" ShowSpinButton="false" Format="##.#"/> </td>
+    </tr>
+
+    <tr>
+        <td>Qty </td>
+        <td> :</td>
+        <td><SfNumericTextBox TValue="decimal?" @bind-Value="@qty" ShowSpinButton="false" Format="##.#" /> </td>
+    </tr>
+
+    <tr>
+        <td><SfButton IsPrimary="true" OnClick="hitungBeratPipa">Hitung </SfButton> </td>
+ 
+        <td> :</td>
+        <td><SfNumericTextBox TValue="decimal?" @bind-Value="@beratpipa" ShowSpinButton="false" Readonly="true" Format="##.#"/> </td>
+        <td>Kg</td>
+    </tr>
+   
+    
+
+
+
+</table>
+
+
+<br />
+
+@*@od, @thickness, @length, @qty, @beratpipa;*@
+<tabel>
+    <tr>
+        <th>OD </th>
+        <th>THICKNESS </th>
+        <th>LENGTH</th>
+        <th>QTY</th>
+        <th>KG</th>
+
+    </tr>
+
+    @foreach(var data in pipaList)
+    {
+    
+    <tr> 
+        <td>
+        <SfNumericTextBox  TValue="decimal?" @bind-Value="@data.Od"  ShowSpinButton="false" Format="##.#" />
+         </td>
+
+           <td>
+             <SfNumericTextBox  TValue="decimal?" @bind-Value="@data.Thickness"  ShowSpinButton="false" Format="##.#" /> 
+            </td>
+        
+            <td>
+             <SfNumericTextBox  TValue="decimal?" @bind-Value="@data.Length"  ShowSpinButton="false" Format="##.#" /> 
+            </td>
+            
+            <td>
+             <SfNumericTextBox  TValue="decimal?" @bind-Value="@data.Qty"  ShowSpinButton="false" Format="##.#" /> 
+            </td>
+            
+            <td>
+             <SfNumericTextBox  TValue="decimal?" @bind-Value="@data.BeratPipa"  ShowSpinButton="false" Format="##.#" /> 
+            </td>
+            
+            
+        
+    </tr>  
+
+    }
+
+</tabel>
+
+
+   
+
+
+
+
+@code {
+
+    decimal? od, thickness, length, qty, beratpipa;
+
+
+
+    List<Pipa> pipaList = new List<Pipa>();
+
+
+
+    private void hitungBeratPipa() 
+    {
+        var pipa = new Pipa();
+
+        pipa.Od = od;
+        pipa.Thickness = thickness;
+        pipa.Length = length;
+        pipa.Qty = qty;
+        beratpipa = pipa.HitungBerat();
+
+        pipaList.Add(pipa);
+
+    }
+
+
+
+
+
+
+
+}

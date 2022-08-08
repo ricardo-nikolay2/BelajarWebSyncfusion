@@ -1,0 +1,74 @@
+﻿@using Entity;
+
+<h3>Hitung Panjang Coil</h3>
+
+
+
+<table cellpadding="5">
+
+    <tr>
+        <td>Berat </td>
+        <td> :</td>
+        <td><SfNumericTextBox  TValue="decimal?" @bind-Value="@Berat"  ShowSpinButton="false" Format="##.#" /> </td>
+        
+    </tr>
+
+    <tr>
+        <td>Tebal </td>
+        <td> :</td>
+        <td><SfNumericTextBox  TValue="decimal?" @bind-Value="@Tebal"  ShowSpinButton="false" Format="##.#" /> </td>
+        
+    </tr>
+
+     <tr>
+        <td>Lebar </td>
+        <td> :</td>
+        <td><SfNumericTextBox  TValue="decimal?" @bind-Value="@Lebar"  ShowSpinButton="false" Format="##.#" /> </td>
+        
+    </tr>
+
+     <tr>
+        <td> 
+            <SfButton OnClick="MetodePanjangCoil"> Hitung</SfButton>
+                </td>
+        
+    </tr>
+
+     <tr>
+        <td>Panjang </td>
+        <td> :</td>
+        <td><SfNumericTextBox  TValue="decimal?" @bind-Value="@Panjang"  ShowSpinButton="false" Format="##.#" /> </td>
+        
+    </tr>
+
+</table>
+
+
+@code {
+
+
+
+    decimal?
+            Berat,
+            Tebal,
+            Lebar,
+            Panjang;
+
+    List<RumusCoil> ListpanjangCoil = new List<RumusCoil>();
+
+    private void MetodePanjangCoil()
+    {
+        var MetodePanjang = new RumusCoil();
+
+        MetodePanjang.berat = Berat;
+        MetodePanjang.tebal = Tebal;
+        MetodePanjang.lebar = Lebar;
+        Panjang = MetodePanjang.RumusPanjangCoil();
+
+        ListpanjangCoil.Add(MetodePanjang);
+
+       
+    }
+
+
+}

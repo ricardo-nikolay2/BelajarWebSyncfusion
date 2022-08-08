@@ -1,0 +1,104 @@
+﻿<h3>Daftar Telepon</h3>
+
+<table cellpadding="4">
+    <tr>
+        <td>Nama</td>
+        <td>:</td>
+        <td><SfTextBox @bind-Value="@nama" />
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>Extension</td>
+        <td>:</td>
+        <td><SfTextBox @bind-Value="@extension" />
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>Voip</td>
+        <td>:</td>
+        <td><SfTextBox @bind-Value="@voip" />
+        </td>
+
+    </tr>
+
+    <tr>
+        <SfButton IsPrimary="true" @OnClick="@SaveData" > SAVE </SfButton>
+    </tr>
+    
+    <tr>    
+        @*<td><SfTextBox @bind-Value="" /></td>*@
+        <td>Cari Nama</td>
+
+    </tr>
+
+
+
+</table>
+
+<br />
+
+
+@*<table>
+    <tr>
+        <th> 
+            Nama
+        </th>
+
+        <th> 
+            Extension
+        </th>
+        <th> 
+            Voip
+        </th>
+    </tr>
+
+
+foreach(var data in kist )
+{
+
+}
+
+
+</table>
+*@
+
+@code {
+    string nama,
+               extension,
+               voip,
+               carinama;
+
+
+
+
+    List<DaftarNomorTelepon> ListDaftarTelepon = new List<DaftarNomorTelepon>();
+
+
+    public void SaveData()
+    {
+        var DataTelepon = new DaftarNomorTelepon();
+        DataTelepon.Nama = nama;
+        DataTelepon.Extension = extension;
+        DataTelepon.Voip = voip;
+
+        ListDaftarTelepon.Add(DataTelepon);
+
+
+    }
+
+
+
+    public class DaftarNomorTelepon
+    {
+        public string Nama { get; set; }  
+        public string Extension { get; set; }
+        public string Voip { get; set; }
+        public string CariNama { get; set; }
+    }
+
+
+}

@@ -1,0 +1,54 @@
+﻿<h3>TestLogikaKondisi</h3>
+
+<SfTextBox @bind-Value="@namaInput" Width="10%" />  <SfButton @onclick="Cetak">Find</SfButton>  
+    
+<br />
+@namaTampil
+<br />
+@DepartmentTampil
+<br />
+@factory
+
+
+
+
+
+@code {
+    string
+                namaInput,
+                namaTampil,
+                DepartmentTampil,
+                factory;
+
+    public void Cetak()
+    {
+        namaInput = namaInput.ToUpper();
+
+        if(namaInput =="RICARDO")
+        {
+            namaTampil = namaInput;
+            namaInput = "";
+            DepartmentTampil = "IT";
+            factory = "ISTW Cikarang";
+
+
+        }
+
+        else if(namaInput == "BAMBANG")
+        {
+            namaTampil = namaInput;
+            namaInput = "";
+            DepartmentTampil = "PPIC";
+            factory = "ISTW Cikarang";
+        }
+
+
+
+
+
+
+    }
+
+    
+
+}

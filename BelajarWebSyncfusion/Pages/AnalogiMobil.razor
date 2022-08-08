@@ -1,0 +1,170 @@
+﻿@using Syncfusion.Blazor.Cards
+@using Entity
+
+<h3>AnalogiMobil</h3>
+
+<style>
+    
+    .e-card{
+
+        width:200px;
+        height:200px;
+    }
+
+</style>
+
+
+<SfCard>
+
+    <SfButton OnClick="@MetodeMatikanAlarm"> Matikan Alarm Mobil </SfButton>
+    <CardImage Image="@NamaFileMatikanAlarm" />
+
+</SfCard>
+
+<SfCard>
+    
+    <SfButton OnClick="@MetodeBukaPintu"> Buka Pintu Mobil </SfButton>
+    <CardImage Image="@NamaFileBukaPintu" />
+
+</SfCard>
+
+<SfCard>
+    <SfButton OnClick="@MetodeStartMesin"> Start Mesin Mobil </SfButton>
+    <CardImage Image="@NamaFileStartMesin" />
+
+</SfCard>
+
+
+<SfCard>
+    <SfButton OnClick="@MetodeInjakRem"> Injak Rem Mobil </SfButton>
+    <CardImage Image="@NamaFileInjakRem" />
+
+</SfCard>
+
+
+<SfCard>
+    <SfButton OnClick="@MetodeMasukGigi">Masuk Gigi Mobil </SfButton>
+    <CardImage Image="@NamaFileMasukGigi" />
+
+</SfCard>
+
+
+
+<SfCard>
+    <SfButton OnClick="@MetodeRemKeGas">Rem ke Gas Mobil </SfButton>
+    <CardImage Image="@NamaFileRemKeGas" />
+
+</SfCard>
+
+
+<SfCard>
+    @*<SfButton OnClick="@MetodeMobilJalan">Mobil Jalan </SfButton>*@
+    <CardImage Image="@NamaFileMobilJalan" />
+
+</SfCard>
+
+
+
+@code {
+
+    #region 3. Settingan Koding dengan menggunakan Class Mobil 
+
+    string?    NamaFileMatikanAlarm,
+               NamaFileBukaPintu,
+               NamaFileStartMesin,
+               NamaFileInjakRem,
+               NamaFileMasukGigi,
+               NamaFileRemKeGas,
+               NamaFileMobilJalan;
+
+
+    Mobil SettinganMobil = new Mobil();
+
+    public void MetodeMatikanAlarm()
+    {
+
+
+        NamaFileMatikanAlarm = SettinganMobil.MatikanAlarm();
+
+    }
+
+    public void MetodeBukaPintu()
+    {
+
+
+
+        if ( String.IsNullOrEmpty(NamaFileMatikanAlarm) == false )
+        {
+            NamaFileBukaPintu = SettinganMobil.BukaPintu();
+            NamaFileMatikanAlarm = "";
+        }
+
+
+
+
+
+    }
+
+    public void MetodeStartMesin()
+    {
+        if(String.IsNullOrEmpty(NamaFileBukaPintu)==false)
+        {
+            NamaFileStartMesin = SettinganMobil.StartMesin();
+            NamaFileBukaPintu= "";
+
+        }
+
+    }
+
+    public void MetodeInjakRem()
+    {
+        if (String.IsNullOrEmpty(NamaFileStartMesin)==false)
+        {
+            NamaFileInjakRem = SettinganMobil.InjakRem();
+            NamaFileStartMesin= "";    
+        }
+
+
+    }
+
+    public void MetodeMasukGigi()
+    {
+        if (String.IsNullOrEmpty(NamaFileInjakRem)==false)
+        {
+            NamaFileMasukGigi = SettinganMobil.MasukGigi();
+            NamaFileInjakRem = "";    
+        }
+
+    }
+
+    private async Task MetodeRemKeGas()
+    {
+        if (String.IsNullOrEmpty(NamaFileMasukGigi)==false)
+
+        {
+            NamaFileRemKeGas = SettinganMobil.RemKeGas();
+            NamaFileMasukGigi= "";    
+
+            await Task.Delay(5000);
+            NamaFileRemKeGas = "";
+
+            NamaFileMobilJalan = SettinganMobil.MobilJalan();
+        }
+        
+
+
+       
+        
+
+    }
+
+    //public void MetodeMobilJalan()
+    //{
+    //    NamaFileMobilJalan = SettinganMobil.MobilJalan();
+    //    NamaFileRemKeGas = "";
+    //}
+    
+
+   #endregion
+
+}
