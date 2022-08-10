@@ -1,10 +1,14 @@
-﻿<h3>Daftar Telepon</h3>
+﻿
+
+
+<h3>Daftar Telepon</h3>
 
 <table cellpadding="4">
     <tr>
         <td>Nama</td>
         <td>:</td>
-        <td><SfTextBox @bind-Value="@nama" />
+        <td><SfTextBox @bind-Value="@nama"  />
+
         </td>
 
     </tr>
@@ -26,68 +30,61 @@
     </tr>
 
     <tr>
-        <SfButton IsPrimary="true" @OnClick="@SaveData" > SAVE </SfButton>
+        <td>
+            <SfButton IsPrimary="true" OnClick="SaveData" > SAVE </SfButton>
+        </td>
+        
     </tr>
     
-    <tr>    
-        @*<td><SfTextBox @bind-Value="" /></td>*@
-        <td>Cari Nama</td>
-
-    </tr>
-
-
 
 </table>
 
 <br />
-
-
-@*<table>
+<table>
     <tr>
-        <th> 
-            Nama
-        </th>
-
-        <th> 
-            Extension
-        </th>
-        <th> 
-            Voip
-        </th>
+        <td>Nama</td>
+        <td>Extension</td>
+        <td>Voip</td>
     </tr>
-
-
-foreach(var data in kist )
+    
+</table>
+@foreach(var data in ListDaftarTelepon)
 {
+    <div>
+       @* Nama &nbsp;&nbsp; = @data.Nama 
+        &nbsp;&nbsp;  Extension &nbsp;&nbsp; = @data.Extension
+        &nbsp;&nbsp;  Voip &nbsp;&nbsp; = @data.Voip *@
+
+         @data.Nama 
+        &nbsp;&nbsp;   @data.Extension
+        &nbsp;&nbsp;   @data.Voip 
+
+
+    </div>
+    <br/>
 
 }
 
 
-</table>
-*@
+
 
 @code {
-    string nama,
+    string      nama,
                extension,
                voip,
                carinama;
-
-
-
 
     List<DaftarNomorTelepon> ListDaftarTelepon = new List<DaftarNomorTelepon>();
 
 
     public void SaveData()
     {
-        var DataTelepon = new DaftarNomorTelepon();
-        DataTelepon.Nama = nama;
-        DataTelepon.Extension = extension;
-        DataTelepon.Voip = voip;
-
-        ListDaftarTelepon.Add(DataTelepon);
-
-
+        ListDaftarTelepon.Add(new DaftarNomorTelepon
+            {
+                Nama = nama,
+                Extension = extension,
+                Voip = voip
+            });
     }
 
 
@@ -97,7 +94,6 @@ foreach(var data in kist )
         public string Nama { get; set; }  
         public string Extension { get; set; }
         public string Voip { get; set; }
-        public string CariNama { get; set; }
     }
 
 
